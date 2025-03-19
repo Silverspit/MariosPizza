@@ -16,9 +16,9 @@ public class Order {
     //Setter
 
 
-    public void addPizza(String pizzaName, int pizzaPrice){
-        pizzaOrders.add(new Product(pizzaName, pizzaPrice));
+    //public void addPizza(String pizzaName, int pizzaPrice){
+      //  pizzaOrders.add(new Product(pizzaName, pizzaPrice));
 
 
     }
-}
+

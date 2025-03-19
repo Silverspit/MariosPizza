@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Inventory {
     private ArrayList<Product> inventory = new ArrayList<>();
 
-
+    public void productsIntoArray(){
     Product p1 = new Product(1, "Vesuvio", "Tomatsauce, ost, skinke og oregano", 57);
     Product p2 = new Product(2, "Amerikaner", "Tomatsauce, ost, oksefars og oregano", 53);
     Product p3 = new Product(3, "Cacciatore", "Tomatsauce, ost, pepperoni og oregano", 57);
@@ -35,10 +35,43 @@ public class Inventory {
     Product p29 = new Product(29, "Abdul", "Tomatsauce, ost, kylling med karry, oliven, jalapeños og pesto", 55);
     Product p30 = new Product(30, "Fiesta", "Tomatsauce, ost, oskesharwarma, hvidløg, jalapeños, salat og dressing", 78);
     Product p31 = new Product(31, "Rucola", "Tomatsauce, ost, pepperoni, rucola og pesto", 90);
-
-
-    //Metode1:Printer alle vores produkter (For loop)
-
-    //Metode2: Afleverer vores produkt til orderline
+        inventory.add(p1);
+        inventory.add(p2);
+        inventory.add(p3);
+        inventory.add(p4);
+        inventory.add(p5);
+        inventory.add(p6);
+        inventory.add(p7);
+        inventory.add(p8);
+        inventory.add(p9);
+        inventory.add(p10);
+        inventory.add(p11);
+        inventory.add(p12);
+        inventory.add(p13);
+        inventory.add(p14);
+        inventory.add(p15);
+        inventory.add(p16);
+        inventory.add(p17);
+        inventory.add(p18);
+        inventory.add(p19);
+        inventory.add(p20);
+        inventory.add(p21);
+        inventory.add(p22);
+        inventory.add(p23);
+        inventory.add(p24);
+        inventory.add(p25);
+        inventory.add(p26);
+        inventory.add(p27);
+        inventory.add(p28);
+        inventory.add(p29);
+        inventory.add(p30);
+        inventory.add(p31);
+    }
 
 }
+    //Metode1: Adder alle produkterne til "inventory" arraylisten (for-loop?)
+
+    //Metode2:Printer alle vores produkter (For loop)
+
+    //Metode3: Afleverer vores produkt til orderline
+

@@ -54,4 +54,9 @@ public class Product {
                 ", price=" + price +
                 '}';
     }
+
+    public void printProduct (){
+        // Punktum metode skal laves
+        System.out.println(id+". "+name+": "+description+"//punktum metode"+price+",-");
+    }
 }
