@@ -1,33 +1,57 @@
 public class Product {
-
-    private String pizzaName;
+    private int id;
+    private String name;
+    private String description;
     private int price;
 
-    //private ArrayList<Toppings> toppings = new ArrayList<>();
 
-    public Product(String pizzaName, int price){
-        this.pizzaName = pizzaName;
+
+    public Product(int id, String name, String description, int price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
         this.price = price;
     }
 
-    public String getPizza(){
-        return pizzaName;
+    public int getId() {
+        return id;
     }
 
-    public void setPizzaName(String pizzaName){
-        this.pizzaName = pizzaName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    /* public void setToppings(Toppings t){
-        toppings.add(t);
+    public String getName() {
+        return name;
     }
-    public ArrayList<Toppings> getToppings(){
-        return toppings;
-    }*/
 
-   /* public String getPizzaWithToppings(){
-        return pizzaName + " with ekstra " + toppings;
-    }*/
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
