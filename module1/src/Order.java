@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Order {
-    private ArrayList <Pizza> pizzaOrders = new ArrayList<>();
+    private ArrayList <Product> pizzaOrders = new ArrayList<>();
     private String name;
     private int ID;
     //Constructor
@@ -17,7 +17,7 @@ public class Order {
 
 
     public void addPizza(String pizzaName, int pizzaPrice){
-        pizzaOrders.add(new Pizza(pizzaName, pizzaPrice));
+        pizzaOrders.add(new Product(pizzaName, pizzaPrice));
 
 
     }

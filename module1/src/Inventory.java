@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class PizzaMenu {
+public class Inventory {
  private ArrayList<String> names = new ArrayList<>();
  private ArrayList<Integer> prices = new ArrayList<>();
 
