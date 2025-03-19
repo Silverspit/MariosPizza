@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class Inventory {
-    private ArrayList<Product> inventory = new ArrayList<>();
+    private static ArrayList<Product> inventory = new ArrayList<>();
 
-    public void productsIntoArray(){
+    public static void productsIntoArray(){
+        //Metode1: Adder alle produkterne til "inventory" arraylisten (for-loop?)
     Product p1 = new Product(1, "Vesuvio", "Tomatsauce, ost, skinke og oregano", 57);
     Product p2 = new Product(2, "Amerikaner", "Tomatsauce, ost, oksefars og oregano", 53);
     Product p3 = new Product(3, "Cacciatore", "Tomatsauce, ost, pepperoni og oregano", 57);
@@ -27,7 +28,7 @@ public class Inventory {
     Product p21 = new Product(21, "Kylling", "Tomatsauce, ost, kylling, salat og dressing", 57);
     Product p22 = new Product(22, "Vegetar", "Oliven, champignon, løg og paprika", 61);
     Product p23 = new Product(23, "Abis", "Tomatsauce, ost, kødstrimler, løg, champignon, paprika, gorgonzola og hvidløg", 110);
-    Product p24 = new Product(24, "Osman Special", "Tomatsauce, ost, bernaise, kødstrimler, løg, æg og paprika", 110);
+    Product p24 = new Product(24, "Osman Special", "Tomatsauce, ost, bearnaise, kødstrimler, løg, æg, paprika og ananas", 110);
     Product p25 = new Product(25, "Oskar Special", "Gorgonzola, mozzarella, gedeost og strudseæg", 110);
     Product p26 = new Product(26, "Stig Special", "Alle Arlas produkter", 61);
     Product p27 = new Product(27, "Mario", "Tomatsauce, ost, skinke, rejer, champignon og artiskok", 78);
@@ -67,11 +68,22 @@ public class Inventory {
         inventory.add(p30);
         inventory.add(p31);
     }
+    //Metode2:Printer alle vores produkter (For loop)
+    public static void printItems(){
+        for (Product p : inventory){
+            p.printProduct();
+        }
+    }
+    //Metode3: Afleverer vores produkt til orderline
+
+    public Product transferToOrderLine(int choice){
+      return inventory.get(choice - 1);
+    }
 
 }
-    //Metode1: Adder alle produkterne til "inventory" arraylisten (for-loop?)
 
-    //Metode2:Printer alle vores produkter (For loop)
 
-    //Metode3: Afleverer vores produkt til orderline
+
+
+
 

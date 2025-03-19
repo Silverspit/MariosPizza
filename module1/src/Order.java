@@ -1,24 +1,17 @@
 import java.util.ArrayList;
 
 public class Order {
-    private ArrayList <Product> pizzaOrders = new ArrayList<>();
-    private String name;
-    private int ID;
-    //Constructor
+    private ArrayList<OrderLine>orderLines = new ArrayList<>();
+    private boolean pickUp = false;
 
-    public Order(String name){
-        this.name = name;
+    //metode, der tilføjer en orderline til vores orderlines
+    public void addToOrderLines(int quantity, Product product) {
+        OrderLine orderLine = new OrderLine(quantity, product);
+        orderLines.add(orderLine);
     }
-
-    public Order(int ID) {
-        this.ID = ID;
-    }
-    //Setter
-
-
-    //public void addPizza(String pizzaName, int pizzaPrice){
-      //  pizzaOrders.add(new Product(pizzaName, pizzaPrice));
-
+    //metode for afhentning af orders
+    public void pickedUp(){
 
     }
 
+}
