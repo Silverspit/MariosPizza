@@ -16,7 +16,7 @@ public class Order {
     //Setter
 
 
-    private void addPizza(String pizzaName, int pizzaPrice){
+    public void addPizza(String pizzaName, int pizzaPrice){
         pizzaOrders.add(new Pizza(pizzaName, pizzaPrice));
 
 
