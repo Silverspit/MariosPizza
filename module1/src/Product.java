@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-
-public class Pizza {
+public class Product {
 
     private String pizzaName;
     private int price;
 
     //private ArrayList<Toppings> toppings = new ArrayList<>();
 
-    public Pizza(String pizzaName, int price){
+    public Product(String pizzaName, int price){
         this.pizzaName = pizzaName;
         this.price = price;
     }
