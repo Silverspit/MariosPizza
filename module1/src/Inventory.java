@@ -32,7 +32,7 @@ public class Inventory {
             new Product(27, "Mario", "Tomatsauce, ost, skinke, rejer, champignon og artiskok", 78),
             new Product(28, "Alfonso", "Tomatsauce, ost, hakket oksekød, feta og chili", 67),
             new Product(29, "Abdul", "Tomatsauce, ost, kylling med karry, oliven, jalapeños og pesto", 55),
-            new Product(30, "Fiesta", "Tomatsauce, ost, oskesharwarma, hvidløg, jalapeños, salat og dressing", 78),
+            new Product(30, "Fiesta", "Tomatsauce, ost, okseshawarma, hvidløg, jalapeños, salat og dressing", 78),
             new Product(31, "Rucola", "Tomatsauce, ost, pepperoni, rucola og pesto", 90)
     ));
     //Metode2:Printer alle vores produkter (For loop)
@@ -43,7 +43,7 @@ public class Inventory {
     }
     //Metode3: Afleverer vores produkt til orderline
         // navn ændring til getProduct
-    public static Product transferToOrderLine(int choice) {
+    public static Product getProduct(int choice) {
         return inventory.get(choice - 1);
     }
 

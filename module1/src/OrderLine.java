@@ -6,6 +6,7 @@ public class OrderLine {
     private int quantity;
     private Product product;
     private int price;
+    private String name;
 
     // laver konstruktør
 
@@ -13,6 +14,7 @@ public class OrderLine {
         this.quantity = quantity;
         this.product = product;
         this.price = product.getPrice() * quantity;
+        this.name = product.getName();
     }
 
     // laver getter
@@ -25,6 +27,13 @@ public class OrderLine {
         return quantity;
     }
 
-    //
+    public String getName(){
+        return name;
+    }
+
+    //   laver en toString metode
+    public String toString(){
+        return quantity +" " +product.getName() +" " + price;
+    }
 
 }
