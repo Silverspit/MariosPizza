@@ -35,11 +35,17 @@ public class Inventory {
             new Product(30, "Fiesta", "Tomatsauce, ost, okseshawarma, hvidløg, jalapeños, salat og dressing", 78),
             new Product(31, "Rucola", "Tomatsauce, ost, pepperoni, rucola og pesto", 90)
     ));
+    private Inventory(){
+
+    }
     //Metode2:Printer alle vores produkter (For loop)
     public static void printItems() {
         for (Product p : inventory) {
             p.printProduct();
         }
+    }
+    public static int getInventorySize(){
+        return inventory.size();
     }
     //Metode3: Afleverer vores produkt til orderline
         // navn ændring til getProduct

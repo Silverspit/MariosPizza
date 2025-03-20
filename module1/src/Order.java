@@ -42,15 +42,17 @@ public class Order {
             System.out.println(orderLine.getQuantity() + "x " + orderLine.getName() + " " +orderLine.getPrice()+ ",-");
         }
         System.out.println("Total: " + sum + ",-");
+        System.out.println("-----------------");
+        System.out.println();
     }
 
     /* 2: Show order
     Order ID: 1
-    Navn: Anders
+    Navn:           Anders
     OrderLines:
-            3x Pepperoni * 90
-            2x Vesuvio * 80
-    Sum: 140 DKK
+                    3x Pepperoni * 90
+                    2x Vesuvio * 80
+    Sum:            140 DKK
 
     Order ID: 2
     Navn: Henrik
