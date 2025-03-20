@@ -3,13 +3,13 @@ import java.util.Scanner;
 
 public class OrderLine {
 
- private int quantity;
- private Product product;
- private int price;
+    private int quantity;
+    private Product product;
+    private int price;
 
- // laver konstruktør
+    // laver konstruktør
 
-    public OrderLine(int quantity,Product product ){
+    public OrderLine(int quantity, Product product) {
         this.quantity = quantity;
         this.product = product;
         this.price = product.getPrice() * quantity;
@@ -17,11 +17,11 @@ public class OrderLine {
 
     // laver getter
 
-    public int getPrice(){
-      return price;
+    public int getPrice() {
+        return price;
     }
 
-    public int getQuantity(){
+    public int getQuantity() {
         return quantity;
     }
 

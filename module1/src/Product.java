@@ -5,7 +5,6 @@ public class Product {
     private int price;
 
 
-
     public Product(int id, String name, String description, int price) {
         this.id = id;
         this.name = name;
@@ -55,8 +54,8 @@ public class Product {
                 '}';
     }
 
-    public void printProduct (){
+    public void printProduct() {
         // Punktum metode skal laves
-        System.out.println(id+". "+name+": "+description+"//punktum metode"+price+",-");
+        System.out.println(id + ". " + name + ": " + description + "//punktum metode" + price + ",-");
     }
 }
