@@ -12,17 +12,19 @@ public class Order {
     private int tid = 1800;
 
     // lave konstruktør
+    //ordre med navn (telefonisk)
     public Order(String name){
         this.name = name;
 
     }
-    public Order(){
-
-    }
+    //ordre uden navn (i butikken)
+    public Order(){}
 
     //metode, der tilføjer en orderline til vores orderlines
     public void addToOrderLines(int quantity, Product product) {
-        orderLines.add(new OrderLine(quantity, product));
+        OrderLine orderline = new OrderLine(quantity, product);
+        orderLines.add(orderline);
+        sum += orderline.getPrice();
     }
 
     //
@@ -37,8 +39,9 @@ public class Order {
 
         }
         for (OrderLine orderLine : orderLines){
-            System.out.println(orderLine.getQuantity() + "x " + orderLine.getName() + " " +orderLine.getPrice()+ ".-");
+            System.out.println(orderLine.getQuantity() + "x " + orderLine.getName() + " " +orderLine.getPrice()+ ",-");
         }
+        System.out.println("Total: " + sum + ",-");
     }
 
     /* 2: Show order
