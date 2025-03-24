@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class History {
     private static ArrayList<Order> orders = new ArrayList<>();
+    private static int totalSales = 0;
 
     public static void addToOrders(Order order) {
         orders.add(order);
+
     }
 
     //Show order menu
@@ -21,6 +24,7 @@ public class History {
                 order.printOrder();
             }
         }
+        System.out.println("Ordre total: " + totalSales + ",-" );
     }
 
     public static void showNotFinished() {
@@ -38,6 +42,7 @@ public class History {
             if (order.getOrderId() == costumerId) {
                 inList = true;
                 order.completeOrder();
+                totalSales += order.getSum();
                 System.out.println("ordre " + order.getOrderId() + " er afsluttet :-)");
 
             }
@@ -56,8 +61,5 @@ public class History {
         }
         return false;
     }
-
-    // show incomplete orders
-    //skal kunne sorteres
 
 }

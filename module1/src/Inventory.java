@@ -35,9 +35,7 @@ public class Inventory {
             new Product(30, "Fiesta", "Tomatsauce, ost, okseshawarma, hvidløg, jalapeños, salat og dressing", 78),
             new Product(31, "Rucola", "Tomatsauce, ost, pepperoni, rucola og pesto", 90)
     ));
-    private Inventory(){
-
-    }
+    private Inventory(){}
     //Metode2:Printer alle vores produkter (For loop)
     public static void printItems() {
         for (Product p : inventory) {
@@ -48,7 +46,6 @@ public class Inventory {
         return inventory.size();
     }
     //Metode3: Afleverer vores produkt til orderline
-        // navn ændring til getProduct
     public static Product getProduct(int choice) {
         return inventory.get(choice - 1);
     }

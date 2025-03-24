@@ -1,11 +1,10 @@
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-    //private static ArrayList<Order> activeOrders = new ArrayList<>();
 
-    //Main menu
-    public static void mainMenu(Scanner scanner) {
+    public static void mainMenu(Scanner scanner, DateTimeFormatter formatter) {
         while (true) {
             System.out.println("\nVælg funktion\n");
             System.out.println("" +
@@ -15,21 +14,21 @@ public class App {
                     "4: Show history \n" +
                     "5: Quit");
             switch (scanner.nextLine().toLowerCase().trim()) {
-                case "1" -> newOrder(scanner);
+                case "1" -> newOrder(scanner, formatter);
                 case "2" -> Inventory.printItems();
                 case "3" -> showOrders(scanner);
                 case "4" -> History.showCompletedOrders();
                 case "5" -> {
                     return;
                 }
+                default -> System.out.println("forkert input");
             }
         }
     }
 
-    //  1. New order
-    public static void newOrder(Scanner scanner) {
+    public static void newOrder(Scanner scanner, DateTimeFormatter formatter) {
         Inventory.printItems();
-        Order order = new Order();
+        Order order = new Order(formatter);
         boolean addingPizzas = true;
 
 
@@ -93,7 +92,11 @@ public class App {
                         System.out.println("Forkert input");
                 }
             }
+
         }
+        System.out.println("hvor lang tid går der før den er klar?");
+        order.setHowLongItTakes(readNumber(scanner));
+        scanner.nextLine();
         //Nu da addingPizzas er false og loopet er færdigt, tilføjer vi ordren til activeOrders arraylisten.
         History.addToOrders(order);
     }
@@ -146,37 +149,10 @@ public class App {
         return scanner.nextInt();
     }
 
-
-
-/*  2: Show order
-    Order ID: 1
-    Navn: Anders
-    OrderLines:
-        3x Pepperoni * 90
-        2x Vesuvio * 80
-    Sum: 140 DKK
-
-    Order ID: 2
-    Navn: Henrik
-    OrderLines:
-        1x Calezone * 120
-    Sum: 120 DKK
-
-    Type number to edit order
-    Press 'Enter'-key to return
- * */
-
-    /* Edit order #xx
-        1: Add order line
-        2: Remove order line
-        3: Make ready for pick-up
-        4: Return
-     * */
-
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        mainMenu(scanner);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        mainMenu(scanner, formatter);
     }
 }
 
