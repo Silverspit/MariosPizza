@@ -17,10 +17,9 @@ public class App {
             switch (scanner.nextLine().toLowerCase().trim()) {
                 case "1" -> newOrder(scanner);
                 case "2" -> Inventory.printItems();
-                case "3" -> History.showOrders();
-                //case "4" -> Show active orders
-                //case "5" -> Show inactive orders
-                case "6" -> {
+                case "3" -> showOrders(scanner);
+                case "4" -> History.showCompletedOrders();
+                case "5" -> {
                     return;
                 }
             }
@@ -99,6 +98,46 @@ public class App {
         History.addToOrders(order);
     }
 
+    public static void showOrders(Scanner scanner) {
+        History.showNotFinished();
+        if (History.checkIfOrderListIsEmpty()) {
+
+            System.out.println("Vil du afslutte en ordre? j/n");
+            while (true) {
+
+                switch (scanner.nextLine().trim().toLowerCase()) {
+                    case "j", "ja": {
+                        completeOrder(scanner);
+                        //osman må vide hvad der foregår
+                        scanner.nextLine();
+                        return;
+                    }
+                    case "n", "nej": {
+                        return;
+                    }
+
+                    default: {
+                        System.out.println("Indtast et gyldigt svar");
+                    }
+                }
+
+
+            }
+        } else {
+            System.out.println("Ingen aktive ordre");
+        }
+
+    }
+
+    public static void completeOrder(Scanner scanner) {
+        System.out.println("Hvilken ordre vil du afslutte?");
+        int answer = readNumber(scanner);
+        while (!History.finishedOrder(answer)) {
+            answer = readNumber(scanner);
+        }
+
+    }
+
     public static int readNumber(Scanner scanner) {
         while (!scanner.hasNextInt()) {
             scanner.nextLine();
@@ -106,6 +145,8 @@ public class App {
         }
         return scanner.nextInt();
     }
+
+
 
 /*  2: Show order
     Order ID: 1
@@ -137,7 +178,5 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         mainMenu(scanner);
     }
-
-
 }
 
