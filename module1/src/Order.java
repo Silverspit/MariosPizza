@@ -4,8 +4,13 @@ import java.util.ArrayList;
 public class Order {
     private ArrayList<OrderLine> orderLines = new ArrayList<>();
     // name : isReadyForPickUp
-    private String name;
+    private String customerName = "";
     private int sum = 0;
+    private boolean isComplete = false;
+    private int orderId;
+    private static int nextOrderId = 1;
+
+
 
     // tid
     private LocalDateTime time;
@@ -13,12 +18,34 @@ public class Order {
 
     // lave konstruktør
     //ordre med navn (telefonisk)
-    public Order(String name){
-        this.name = name;
 
-    }
     //ordre uden navn (i butikken)
-    public Order(){}
+    public Order(){
+        if (nextOrderId < 1000){
+        orderId = nextOrderId++;
+        } else {
+            nextOrderId = 1;
+            orderId = nextOrderId;
+        }
+    }
+
+    // getter og setter for id og navn
+
+    public void setCustomerName(String customerName){
+        this.customerName = customerName;
+    }
+
+    public void setOrderId(int orderId){
+        this.orderId = orderId;
+    }
+
+    public String getCustomerName(){
+        return customerName;
+    }
+
+    public int getOrderId(){
+        return orderId;
+    }
 
     //metode, der tilføjer en orderline til vores orderlines
     public void addToOrderLines(int quantity, Product product) {
@@ -27,14 +54,16 @@ public class Order {
         sum += orderline.getPrice();
     }
 
+
     //
         
 
     // toString der gør printen pæn
     public void printOrder(){
+        System.out.println("Order: " + orderId);
         System.out.println("----------------------");
-        if (!name.isEmpty()){
-            System.out.println("Navn: " + name);
+        if (!customerName.isEmpty()){
+            System.out.println("Navn: " + customerName  );
             System.out.println("---------------");
 
         }
@@ -44,6 +73,18 @@ public class Order {
         System.out.println("Total: " + sum + ",-");
         System.out.println("-----------------");
         System.out.println();
+    }
+
+    public ArrayList<OrderLine> getOrderLines(){
+        return orderLines;
+    }
+
+    public void completeOrder(){
+        isComplete = true;
+    }
+
+    public boolean getOrder(){
+       return isComplete;
     }
 
     /* 2: Show order

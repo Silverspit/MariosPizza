@@ -33,7 +33,8 @@ public class OrderLine {
 
     //   laver en toString metode
     public String toString(){
-        return quantity +" " +product.getName() +" " + price;
+        return quantity +" " +product.getName()+ price;
     }
+
 
 }

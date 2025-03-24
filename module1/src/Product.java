@@ -56,6 +56,14 @@ public class Product {
 
     public void printProduct() {
         // Punktum metode skal laves
-        System.out.println(id + ". " + name + ": " + description + "//punktum metode" + price + ",-");
+        String pad = id + ".";
+        for (int i = pad.length(); i < 4; i++) {
+            pad += " ";
+        }
+        String str = pad + name + ": " + description;
+        for (int i = str.length(); i <120 ; i++) {
+            str += ".";
+        }
+        System.out.println( str + " " + price + ",-");
     }
 }
