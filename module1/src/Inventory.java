@@ -27,7 +27,7 @@ public class Inventory {
             new Product(22, "Vegetar", "Oliven, champignon, løg og paprika", 61),
             new Product(23, "Abis", "Tomatsauce, ost, kødstrimler, løg, champignon, paprika, gorgonzola og hvidløg", 110),
             new Product(24, "Osman Special", "Tomatsauce, ost, bearnaise, kødstrimler, løg, æg, paprika og ananas", 110),
-            new Product(25, "Oskar Special", "Gorgonzola, mozzarella, gedeost og strudseæg", 110),
+            new Product(25, "Oskar Special", "Blå skimmel, gul peberfrugt og strudseæg", 110),
             new Product(26, "Stig Special", "Alle Arlas produkter", 61),
             new Product(27, "Mario", "Tomatsauce, ost, skinke, rejer, champignon og artiskok", 78),
             new Product(28, "Alfonso", "Tomatsauce, ost, hakket oksekød, feta og chili", 67),
@@ -41,6 +41,8 @@ public class Inventory {
         for (Product p : inventory) {
             p.printProduct();
         }
+        //metode
+
     }
     public static int getInventorySize(){
         return inventory.size();
@@ -49,6 +51,16 @@ public class Inventory {
     public static Product getProduct(int choice) {
         return inventory.get(choice - 1);
     }
+
+    public static int getProductprice(String productName){
+        for (Product product : inventory){
+            if (product.getName().equals(productName)){
+                return product.getPrice();
+            }
+        }
+        return 0;
+    }
+
 
 }
 

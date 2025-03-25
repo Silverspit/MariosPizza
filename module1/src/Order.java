@@ -10,12 +10,12 @@ public class Order {
     private boolean isComplete = false;
     private int orderId;
     private static int nextOrderId = 1;
+    private String status = "\u001B[31mAktiv\u001B[0m";
     // tid
     private LocalDateTime now = LocalDateTime.now();
     private String timeOrderMade;
 
     // afhent tid
-    private int howLongItTakes;
     private LocalDateTime pickUpTime;
     private String pickUp;
 
@@ -35,9 +35,13 @@ public class Order {
     }
 
     public void setHowLongItTakes(int howLongItTakes) {
-        this.howLongItTakes = howLongItTakes;
         pickUpTime = now.plusMinutes(howLongItTakes);
+        if (pickUpTime.getMinute()<10){
+            pickUp = pickUpTime.getHour() + ".0" + pickUpTime.getMinute();
+        }
+        else {
         pickUp = pickUpTime.getHour() + "." + pickUpTime.getMinute();
+        }
     }
 
     public LocalDateTime getPickUpTime(){
@@ -76,20 +80,22 @@ public class Order {
 
     // toString der gør printen pæn
     public void printOrder() {
-        System.out.println("Order: " + orderId);
+        System.out.println("Ordre: " + orderId);
         System.out.println(timeOrderMade);
-        System.out.println("----------------------");
+        System.out.println("----------------------------");
         if (!customerName.isEmpty()) {
             System.out.println("Navn: " + customerName);
-            System.out.println("---------------");
+            System.out.println("----------------------------");
 
         }
         for (OrderLine orderLine : orderLines) {
             System.out.println(orderLine.getQuantity() + "x " + orderLine.getName() + " " + orderLine.getPrice() + ",-");
         }
+        System.out.println("----------------------------");
         System.out.println("Total: " + sum + ",-");
-        System.out.println("pick up time: " + pickUp);
-        System.out.println("-----------------");
+        System.out.println("Afhentningstidspunkt: " + pickUp);
+        System.out.println("----------------------------");
+        System.out.println(status);
         System.out.println();
     }
 
@@ -99,9 +105,10 @@ public class Order {
 
     public void completeOrder() {
         isComplete = true;
+        status = "\u001B[32mAfsluttet\u001B[0m";
     }
 
-    public boolean getOrder() {
+    public boolean getIsComplete() {
         return isComplete;
     }
 

@@ -1,5 +1,4 @@
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -8,40 +7,45 @@ public class App {
         while (true) {
             System.out.println("\nVælg funktion\n");
             System.out.println("" +
-                    "1: New order\n" +
-                    "2: Show menu\n" +
-                    "3: Show orders\n" +
-                    "4: Show history \n" +
-                    "5: Quit");
+                    "1: Ny ordre\n" +
+                    "2: Vis menukort\n" +
+                    "3: Vis aktive ordrer\n" +
+                    "4: Vis ordrehistorik \n" +
+                    "5: Vis statistik \n" +
+                    "6: Fjern ordre \n" +
+                    "7: Afslut");
             switch (scanner.nextLine().toLowerCase().trim()) {
                 case "1" -> newOrder(scanner, formatter);
-                case "2" -> Inventory.printItems();
+                case "2" -> printMenu(scanner);
                 case "3" -> showOrders(scanner);
                 case "4" -> History.showCompletedOrders();
-                case "5" -> {
+                case "5" -> History.printSortedStatistics();
+                case "6" -> removeOrder(scanner);
+                case "7" -> {
                     return;
                 }
-                default -> System.out.println("forkert input");
+                default -> System.out.println("Forkert input");
             }
         }
     }
 
     public static void newOrder(Scanner scanner, DateTimeFormatter formatter) {
+        // statics metode kaldt på klassen
         Inventory.printItems();
+        System.out.println();
         Order order = new Order(formatter);
-        boolean addingPizzas = true;
+        boolean addingProducts = true;
 
 
         //Det her loop kører så længe addingpizza er true
-        while (addingPizzas) {
+        while (addingProducts) {
             //Laver en variabel for pizza valg
             int productChoice;
             //Starter nyt loop (indre loop) der kører indtil brugeren har givet et valid input
             while (true) {
                 //Spørg brugeren
                 System.out.println("Hvilken pizza vil du tilføje?");
-                productChoice = readNumber(scanner);
-                scanner.nextLine();
+                productChoice = numberInput(scanner);
 
                 //if statement der tjekker om brugerinputtet er større end 0 og er indenfor pizzamenuen
                 if (productChoice > 0 && productChoice <= Inventory.getInventorySize()) {
@@ -56,8 +60,7 @@ public class App {
             //Gør det samme som foroven bare med productQuantity.
             while (true) {
                 System.out.println("Hvor mange styk?");
-                productQuantity = readNumber(scanner);
-                scanner.nextLine();
+                productQuantity = numberInput(scanner);
                 if (productQuantity > 0) {
                     break;
                 }
@@ -70,22 +73,22 @@ public class App {
             order.addToOrderLines(productQuantity, Inventory.getProduct(productChoice));
 
             //Spørg brugeren om de vil tilføje flere pizzaer
-            //Og laver boolean der virker på samme måde som addingPizzas
-            boolean addMore = true;
-            while (addMore) {
-                System.out.println("Vil du tilføje flere pizzaer? j/n, default j");
+            //Og laver boolean der virker på samme måde som addingProducts
+            boolean inputController = true;
+            while (inputController) {
+                System.out.println("Vil du tilføje flere pizzaer? j/n, tryk enter for ja");
                 String input = scanner.nextLine().toLowerCase().trim();
                 //Laver switch statement med input formatteret til valide svar
                 switch (input) {
-                    //hvis de vil tilføje flere, gør den addMore til false, hvilket stopper flerePizzaer loopet
+                    //hvis de vil tilføje flere, gør den inputController til false, hvilket stopper inputController loopet
                     //Og går til toppen af det første loop
                     case "j", "ja", "":
-                        addMore = false;
+                        inputController = false;
                         break;
                     //Gør alle kørevariablerne falske, så loopsne ikke køre igen.
                     case "n", "nej":
-                        addingPizzas = false;
-                        addMore = false;
+                        addingProducts = false;
+                        inputController = false;
                         break;
                     //Gives indtil et validt svar er inputtet
                     default:
@@ -95,15 +98,14 @@ public class App {
 
         }
         System.out.println("hvor lang tid går der før den er klar?");
-        order.setHowLongItTakes(readNumber(scanner));
-        scanner.nextLine();
-        //Nu da addingPizzas er false og loopet er færdigt, tilføjer vi ordren til activeOrders arraylisten.
+        order.setHowLongItTakes(numberInput(scanner));
+        //Nu da addingProducts er false og loopet er færdigt, tilføjer vi ordren til activeOrders arraylisten.
         History.addToOrders(order);
     }
 
     public static void showOrders(Scanner scanner) {
-        History.showNotFinished();
-        if (History.checkIfOrderListIsEmpty()) {
+        History.showActiveOrders();
+        if (History.hasActiveOrders()) {
 
             System.out.println("Vil du afslutte en ordre? j/n");
             while (true) {
@@ -111,8 +113,6 @@ public class App {
                 switch (scanner.nextLine().trim().toLowerCase()) {
                     case "j", "ja": {
                         completeOrder(scanner);
-                        //osman må vide hvad der foregår
-                        scanner.nextLine();
                         return;
                     }
                     case "n", "nej": {
@@ -133,26 +133,49 @@ public class App {
     }
 
     public static void completeOrder(Scanner scanner) {
-        System.out.println("Hvilken ordre vil du afslutte?");
-        int answer = readNumber(scanner);
-        while (!History.finishedOrder(answer)) {
-            answer = readNumber(scanner);
+        System.out.println("Hvilken ordre vil du afslutte? Skriv 0 for at fortryde");
+        int answer = numberInput(scanner);
+        if (answer == 0){
+            return;
+        }
+        while (!History.completeOrder(answer)) {
+            answer = numberInput(scanner);
         }
 
     }
 
-    public static int readNumber(Scanner scanner) {
+    public static int numberInput(Scanner scanner) {
         while (!scanner.hasNextInt()) {
             scanner.nextLine();
             System.out.println("Skal angive tal");
+
         }
-        return scanner.nextInt();
+        int numberToReturn = scanner.nextInt();
+        scanner.nextLine();
+        return numberToReturn;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         mainMenu(scanner, formatter);
+    }
+
+    public static void removeOrder (Scanner scanner){
+        History.showOrders();
+        System.out.println("Hvilken ordre vil du fjerne? Skriv 0 for at fortryde");
+        int answer = numberInput(scanner);
+        if (answer == 0){
+            return;
+        }
+        History.removeOrder(answer);
+    }
+
+    public static void printMenu (Scanner scanner){
+        Inventory.printItems();
+        System.out.println("\nTryk enter for at fortsætte");
+        scanner.nextLine();
+
     }
 }
 

@@ -1,15 +1,11 @@
 need to have
 
-2. tid på order, (pickUpTime)
-3. sortering på tid
-4. liste med favorit pizza
-5. print samlet sum på completeOrder
+
 
 
 
 nice to have
-1. press enter for at forsætte efter vist menu
-2. gør orders i farve eller bare gør det mere pænt
-3. styk pris på order
 4. tilføj navn til print i order
+2. gør orders i farve eller bare gør det mere pænt
+5. tilføj flere pizza
 
