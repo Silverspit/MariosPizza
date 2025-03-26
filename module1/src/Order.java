@@ -16,7 +16,7 @@ public class Order {
     private String timeOrderMade;
 
     // afhent tid
-    private LocalDateTime pickUpTime;
+    private LocalDateTime pickUpTime = LocalDateTime.now();
     private String pickUp;
 
     // lave konstruktør
@@ -26,6 +26,7 @@ public class Order {
     public Order(DateTimeFormatter formatter) {
         timeOrderMade = now.format(formatter);
 
+
         if (nextOrderId < 1000) {
             orderId = nextOrderId++;
         } else {
@@ -34,14 +35,10 @@ public class Order {
         }
     }
 
-    public void setHowLongItTakes(int howLongItTakes) {
+    public void setHowLongItTakes(int howLongItTakes, DateTimeFormatter formatter2) {
         pickUpTime = now.plusMinutes(howLongItTakes);
-        if (pickUpTime.getMinute()<10){
-            pickUp = pickUpTime.getHour() + ".0" + pickUpTime.getMinute();
-        }
-        else {
-        pickUp = pickUpTime.getHour() + "." + pickUpTime.getMinute();
-        }
+        pickUp = pickUpTime.format(formatter2);
+
     }
 
     public LocalDateTime getPickUpTime(){
@@ -103,7 +100,7 @@ public class Order {
         return orderLines;
     }
 
-    public void completeOrder() {
+    public void setComplete() {
         isComplete = true;
         status = "\u001B[32mAfsluttet\u001B[0m";
     }

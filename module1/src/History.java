@@ -45,7 +45,7 @@ public class History {
         for (Order order : orders) {
             if (order.getOrderId() == costumerId && !order.getIsComplete()) {
                 inList = true;
-                order.completeOrder();
+                order.setComplete();
                 for (OrderLine orderLine : order.getOrderLines()) {
                     int count = statistics.getOrDefault(orderLine.getName(), 0);
                     statistics.put(orderLine.getName(), count + orderLine.getQuantity());

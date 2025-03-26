@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class App {
 
-    public static void mainMenu(Scanner scanner, DateTimeFormatter formatter) {
+    public static void mainMenu(Scanner scanner, DateTimeFormatter formatter, DateTimeFormatter formatter2) {
         while (true) {
             System.out.println("\nVælg funktion\n");
             System.out.println("" +
@@ -15,7 +15,7 @@ public class App {
                     "6: Fjern ordre \n" +
                     "7: Afslut");
             switch (scanner.nextLine().toLowerCase().trim()) {
-                case "1" -> newOrder(scanner, formatter);
+                case "1" -> newOrder(scanner, formatter, formatter2);
                 case "2" -> printMenu(scanner);
                 case "3" -> showOrders(scanner);
                 case "4" -> History.showCompletedOrders();
@@ -29,7 +29,7 @@ public class App {
         }
     }
 
-    public static void newOrder(Scanner scanner, DateTimeFormatter formatter) {
+    public static void newOrder(Scanner scanner, DateTimeFormatter formatter, DateTimeFormatter formatter2) {
         // statics metode kaldt på klassen
         Inventory.printItems();
         System.out.println();
@@ -98,7 +98,7 @@ public class App {
 
         }
         System.out.println("hvor lang tid går der før den er klar?");
-        order.setHowLongItTakes(numberInput(scanner));
+        order.setHowLongItTakes(numberInput(scanner), formatter2);
         //Nu da addingProducts er false og loopet er færdigt, tilføjer vi ordren til activeOrders arraylisten.
         History.addToOrders(order);
     }
@@ -157,8 +157,9 @@ public class App {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        mainMenu(scanner, formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH.mm");
+        mainMenu(scanner, formatter, formatter2);
     }
 
     public static void removeOrder (Scanner scanner){
