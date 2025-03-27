@@ -10,7 +10,7 @@ public class Order {
     private boolean isComplete = false;
     private int orderId;
     private static int nextOrderId = 1;
-    private String status = "\u001B[31mAktiv\u001B[0m";
+    private String status = "\u001B[31m" + "Aktiv" + "\u001B[0m";
     // tid
     private LocalDateTime now = LocalDateTime.now();
     private String timeOrderMade;
@@ -102,7 +102,7 @@ public class Order {
 
     public void setComplete() {
         isComplete = true;
-        status = "\u001B[32mAfsluttet\u001B[0m";
+        status = "\u001B[32m" + "Afsluttet" + "\u001B[0m";
     }
 
     public boolean getIsComplete() {
