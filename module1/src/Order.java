@@ -77,7 +77,9 @@ public class Order {
 
     // toString der gør printen pæn
     public void printOrder() {
-        System.out.println("Ordre: " + orderId);
+        int totalWitdh = 29;
+        int spaces = Math.max(1, totalWitdh - status.length());
+        System.out.printf("%s%" + spaces + "s%s%n","Ordre: " + orderId,"",status);
         System.out.println(timeOrderMade);
         System.out.println("----------------------------");
         if (!customerName.isEmpty()) {
@@ -92,7 +94,6 @@ public class Order {
         System.out.println("Total: " + sum + ",-");
         System.out.println("Afhentningstidspunkt: " + pickUp);
         System.out.println("----------------------------");
-        System.out.println(status);
         System.out.println();
     }
 
