@@ -57,7 +57,7 @@ public class App {
             }
             int productQuantity;
 
-            //Gør det samme som foroven bare med productQuantity.
+            //Gør det samme som foroven bare med productQuantity. 
             while (true) {
                 System.out.println("Hvor mange styk?");
                 productQuantity = numberInput(scanner);
@@ -99,7 +99,7 @@ public class App {
         }
         System.out.println("hvor lang tid går der før den er klar?");
         order.setHowLongItTakes(numberInput(scanner), formatter2);
-        //Nu da addingProducts er false og loopet er færdigt, tilføjer vi ordren til activeOrders arraylisten.
+        //Nu da addingProducts er false og loopet er færdigt, tilføjer vi ordren til Orders arraylisten.
         History.addToOrders(order);
     }
 
