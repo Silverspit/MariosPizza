@@ -160,6 +160,7 @@ public class App {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("HH.mm");
         mainMenu(scanner, formatter, formatter2);
+        scanner.close();
     }
 
     public static void removeOrder (Scanner scanner){
